@@ -6,7 +6,7 @@ This is the test assignment for Radu Simonică.
 * Install Docker on your local machine from here: https://www.docker.com/products/docker-desktop
 * Make sure the installation is successful.
 * Checkout this repository on your local machine
-* Download the ```jenkins.tar``` archive from here: https://drive.google.com/file/d/1SvvcCBbksGFgl2T8voFkrP29XapAOdrr/view?usp=sharing
+* Download the ```jenkins.tar``` archive from here: https://drive.google.com/file/d/1ktNc4L753Gvi4-uYYOzUVc3WuyAxxPp_/view?usp=sharing
 * Copy the jenkins.tar file to ```src/main/resources/docker```
 * Inside this directory, you'll find two shell scripts called ```run-grid.sh``` and ```run-jenkins.sh```
 * Open a terminal and type the following command ```cd src/main/resources/docker``` or open the terminal directly in that directory
