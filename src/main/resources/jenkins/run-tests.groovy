@@ -16,7 +16,7 @@ pipeline {
         stage("Deploy netdata") {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    build job: 'Deploy Netdata', wait=true
+                    build job: 'Deploy Netdata', wait: true
                 }
             }
         }
