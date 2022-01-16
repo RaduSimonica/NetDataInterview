@@ -19,6 +19,10 @@ public class Runner {
         runProcess(String.format(Script.COPY_FILE_TO_APP.get(), source, destination));
     }
 
+    public void deleteFileFromApp(String path) {
+        runProcess(String.format(Script.DELETE_FILE_FROM_APP.get(), path));
+    }
+
     public void restartNetdataContainer() {
         runProcess(Script.RESTART_CONTAINER.get());
     }

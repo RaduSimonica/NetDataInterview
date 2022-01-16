@@ -41,6 +41,7 @@ public class CheckAlarm extends BaseClass {
         alarm.buildAsFile();
 
         Runner runner = new Runner();
+        runner.deleteFileFromApp(Path.ALERTS.get() + alarm.getAlarmFile().getName());
         runner.copyFileToApp(alarm.getAlarmFile().getPath(), Path.ALERTS.get());
         runner.restartNetdataContainer();
 

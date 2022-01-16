@@ -29,16 +29,8 @@ public class Scriptlets {
     }
 
     public static void disableAlarm(Alarm alarm) {
-        try {
-            new FileOutputStream(alarm.getAlarmFile().getPath()).close();
-        } catch (IOException e) {
-            LOGGER.log(
-                    Level.ERROR,
-                    String.format("Cannot delete contents of the alarm file: %s", alarm.getAlarmFile().getPath())
-            );
-        }
-
         Runner runner = new Runner();
+        runner.deleteFileFromApp(Path.ALERTS.get() + alarm.getAlarmFile().getName());
         runner.copyFileToApp(alarm.getAlarmFile().getPath(), Path.ALERTS.get());
         runner.restartNetdataContainer();
     }
