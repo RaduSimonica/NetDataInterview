@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import utilities.Scriptlets;
 import utilities.config.ConfigData;
 
 import java.io.File;
