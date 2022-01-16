@@ -1,0 +1,81 @@
+version: "3.9"
+services:
+
+  hub:
+    image: selenium/hub:3.141.59
+    container_name: hub
+    ports:
+      - "4444:4444"
+
+    environment:
+      GRID_MAX_SESSION: 16
+      GRID_BROWSER_TIMEOUT: 3000
+      GRID_TIMEOUT: 3000
+
+  chrome0:
+    image: selenium/node-chrome-debug:3.141.59
+    container_name: web-chrome-0
+    depends_on:
+      - hub
+    environment:
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_SESSION: 2
+      NODE_MAX_INSTANCES: 2
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5900:5900"
+    links:
+      - hub
+
+  chrome1:
+    image: selenium/node-chrome-debug:3.141.59
+    container_name: web-chrome-1
+    depends_on:
+      - hub
+    environment:
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_SESSION: 2
+      NODE_MAX_INSTANCES: 2
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5901:5901"
+    links:
+      - hub
+
+  chrome2:
+    image: selenium/node-chrome-debug:3.141.59
+    container_name: web-chrome-2
+    depends_on:
+      - hub
+    environment:
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_SESSION: 2
+      NODE_MAX_INSTANCES: 2
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5902:5902"
+    links:
+      - hub
+
+  chrome3:
+    image: selenium/node-chrome-debug:3.141.59
+    container_name: web-chrome-3
+    depends_on:
+      - hub
+    environment:
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_SESSION: 2
+      NODE_MAX_INSTANCES: 2
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5903:5903"
+    links:
+      - hub
