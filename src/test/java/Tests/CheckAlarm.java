@@ -38,10 +38,10 @@ public class CheckAlarm extends BaseClass {
                 .info("The percentage of RAM used by the system.")
                 .build();
 
-        File alarmFile = alarm.buildAsFile();
+        alarm.buildAsFile();
 
         Runner runner = new Runner();
-        runner.copyFileToApp(alarmFile.getPath(), Path.ALERTS.get());
+        runner.copyFileToApp(alarm.getAlarmFile().getPath(), Path.ALERTS.get());
         runner.restartNetdataContainer();
 
         // Frontend
@@ -59,5 +59,24 @@ public class CheckAlarm extends BaseClass {
 
         // Backend
         Assert.assertTrue(Scriptlets.isAlarmActiveInApi(alarm), "Alarm is displayed as active in API");
+
+        // Disable the alarm
+        Scriptlets.disableAlarm(alarm);
+
+        // Recheck with alarm disabled
+        this.driverUtils.navigateHome();
+        homePage.waitForPageRootToBeDisplayed();
+        Assert.assertTrue(homePage.isPageRootDisplayed(), "Application is running.");
+
+        homePage.clickAlarmsModal();
+        alarmsModal.waitForAlarmsModalLabel();
+        Assert.assertTrue(alarmsModal.isAlarmsModalLabelDisplayed(), "Alarms modal is open.");
+        Assert.assertFalse(alarmsModal.isAlarmActive(alarm), "Alarm is no longer displayed as active in UI.");
+
+        // Backend
+        Assert.assertFalse(
+                Scriptlets.isAlarmActiveInApi(alarm),
+                "Alarm is no longer displayed as active in API"
+        );
     }
 }

@@ -48,7 +48,11 @@ public class Alarm {
     @Getter
     private String info;
 
+    @Getter
     private List<String> list;
+
+    @Getter
+    private File alarmFile;
 
     private void buildList() {
         this.list = new ArrayList<>();
@@ -75,16 +79,16 @@ public class Alarm {
         return this.list;
     }
 
-    public File buildAsFile() {
+    public void buildAsFile() {
         buildList();
         String path = ConfigData.getAlarmTmpDir() +
                 File.separator +
                 this.name +
                 ".conf";
 
-        File alarmFile = new File(path);
+        this.alarmFile = new File(path);
 
-        try (FileOutputStream stream = new FileOutputStream(alarmFile)){
+        try (FileOutputStream stream = new FileOutputStream(this.alarmFile)){
             for (String line : this.list) {
                 stream.write(line.getBytes(StandardCharsets.UTF_8));
                 stream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
@@ -92,7 +96,5 @@ public class Alarm {
         } catch (IOException e) {
             LOGGER.log(Level.ERROR, "Could not write alarm to file.");
         }
-
-        return alarmFile;
     }
 }

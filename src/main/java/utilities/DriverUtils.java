@@ -1,5 +1,6 @@
 package utilities;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -30,7 +31,10 @@ public class DriverUtils {
     }
 
     public void waitForElementToBeDisplayed(WebElement element) {
-        WebDriverWait wait = new WebDriverWait (this.driver, ConfigData.getDriverImplicitWait());
-        wait.until(ExpectedConditions.visibilityOf(element));
+        try {
+            WebDriverWait wait = new WebDriverWait(this.driver, ConfigData.getDriverImplicitWait());
+            wait.until(ExpectedConditions.visibilityOf(element));
+        } catch (TimeoutException ignored) {
+        }
     }
 }
