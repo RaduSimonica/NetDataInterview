@@ -34,8 +34,10 @@ public class AlarmsModal {
     }
 
     public Boolean isAlarmActive(Alarm alarm) {
+        this.driverUtils.waitForElementToBeDisplayed(this.alarmsActive);
         List<WebElement> activeAlarms = this.alarmsActive.findElements(By.xpath("//table/tbody/tr/td[1]/span"));
         for (WebElement activeAlarm : activeAlarms) {
+            this.driverUtils.waitForElementToBeDisplayed(activeAlarm);
             if (activeAlarm.getText().equals(alarm.getInfo())) {
                 return true;
             }
