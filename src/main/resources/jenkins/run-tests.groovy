@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Run tests!") {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
                     sh "mvn clean test"
                 }
             }
