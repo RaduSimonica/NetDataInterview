@@ -89,10 +89,6 @@ public class Alarm {
 
         this.alarmFile = new File(path);
 
-        if (this.alarmFile.exists()) {
-            Scriptlets.deleteContentsOfFile(path);
-        }
-
         try (FileOutputStream stream = new FileOutputStream(this.alarmFile)){
             for (String line : this.list) {
                 stream.write(line.getBytes(StandardCharsets.UTF_8));
