@@ -10,7 +10,7 @@ pipeline {
         }
         stage("Git Checkout") {
             steps {
-                git branch: 'Grid', url: 'https://github.com/RaduSimonica/NetDataInterview.git'
+                git branch: 'master', url: 'https://github.com/RaduSimonica/NetDataInterview.git'
             }
         }
         stage("Deploy netdata") {
