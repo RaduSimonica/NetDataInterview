@@ -35,6 +35,7 @@ public class DriverUtils {
             WebDriverWait wait = new WebDriverWait(this.driver, ConfigData.getDriverImplicitWait());
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException ignored) {
+            waitForSeconds(2);
         }
     }
 }
